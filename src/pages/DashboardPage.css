@@ -1,0 +1,217 @@
+/* src/pages/DashboardPage.css */
+.dashboard-container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  color: var(--text-color-primary);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.logout-button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color-secondary);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.logout-button:hover {
+  background-color: var(--card-bg-color);
+  color: var(--text-color-primary);
+  border-color: var(--text-color-primary);
+}
+
+
+.dashboard-grid {
+  display: grid;
+  /* A three-column grid for better balance */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start; /* Aligns items to the top of their grid cell */
+}
+
+/* Assign specific grid areas to our cards */
+.calendar-card {
+  grid-column: span 2; /* Calendar takes up 2 out of 3 columns */
+}
+
+.history-card {
+  grid-column: span 1; /* History takes up the remaining 1 column */
+}
+
+.dashboard-card {
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.dashboard-card h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.action-card p {
+  color: var(--text-color-secondary);
+  margin-bottom: 2rem;
+}
+
+
+.history-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* Add some space if there are multiple items */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color); /* A slightly different background to stand out */
+  transition: box-shadow 0.2s;
+}
+
+.history-item:hover {
+  box-shadow: 0 4px 15px rgba(138, 149, 179, 0.1); /* Add a subtle shadow on hover */
+}
+
+.history-item-info span {
+  display: block;
+}
+
+.history-item-quiz-type {
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
+.history-item-date {
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+}
+
+.history-item-score {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--testimonial-bg); /* Use the light lavender background */
+  color: var(--text-color-primary);
+  border-radius: 20px;
+}
+
+/* Style for the button inside the history card */
+.history-card .cta-button {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.5rem; /* More space above the button */
+  text-align: center;
+  display: inline-block; /* Needed for Link to behave like a button */
+}
+.mindful-moment-card .quote {
+  font-style: italic;
+  color: var(--text-color-secondary);
+}
+
+.mindful-moment-card .author {
+  text-align: right;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+  }
+}
+
+/* --- Calendar Mood Tracker Styles --- */
+/* --- Compact Calendar Mood Tracker Styles --- */
+.react-calendar {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg-color);
+  border-radius: 12px;
+  padding: 0.5rem; /* Reduced padding */
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif; /* Ensure consistent font */
+}
+
+/* Reduce the size of the day tiles */
+.react-calendar__tile {
+  height: 50px; /* Reduced height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 5px;
+  font-size: 0.75rem; /* Smaller date number */
+}
+
+/* Slightly smaller emoji on the calendar */
+.mood-emoji-on-calendar {
+  font-size: 1.3rem; /* Reduced size */
+  margin-top: 3px;
+}
+
+/* Navigation buttons (e.g., < > Month Year) styling */
+.react-calendar__navigation button {
+  min-width: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Weekday labels (Sun, Mon, etc.) */
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  text-decoration: none;
+  padding-bottom: 0.5rem;
+  font-size: 0.7rem;
+}
+
+/* General button styling within the calendar */
+.react-calendar button {
+  background: none;
+  border: none;
+  color: var(--text-color-primary);
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.react-calendar button:hover {
+  background-color: var(--bg-color);
+}
+
+.react-calendar__tile--now {
+  background: var(--testimonial-bg);
+}
+
+.react-calendar__tile--active {
+    background: var(--accent-primary);
+    color: white;
+}
