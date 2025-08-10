@@ -1,4 +1,3 @@
-// src/pages/DashboardPage.js
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -7,54 +6,60 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './DashboardPage.css';
 
-// Helper to format date to YYYY-MM-DD
+// This helper function was missing from the abbreviated code
 const getFormattedDate = (date) => date.toISOString().split('T')[0];
 
 const DashboardPage = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // These are the variables from the warning
+  // All state declarations are present here
   const [assessments, setAssessments] = useState([]);
   const [moods, setMoods] = useState({});
   const [moodValue, setMoodValue] = useState(2);
-  const [loading, setLoading] = useState(true); // Declared here
+  const [loading, setLoading] = useState(true);
 
+  // These variables were also missing from the abbreviated code
+  const API_URL = process.env.REACT_APP_API_URL || '';
   const moodOptions = ['😔', '😕', '😐', '🙂', '😄'];
   const today = getFormattedDate(new Date());
 
+  // This useEffect hook is essential for fetching data
   useEffect(() => {
     const fetchData = async () => {
-      if (!user) return;
+      if (!user) return; // Don't fetch if user is not yet available
       setLoading(true);
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         const [assessmentsRes, moodsRes] = await Promise.all([
-          axios.get('/api/assessments', config),
-          axios.get('/api/moods', config),
+          axios.get(`${API_URL}/api/assessments`, config),
+          axios.get(`${API_URL}/api/moods`, config),
         ]);
+
         setAssessments(assessmentsRes.data);
         const moodsMap = moodsRes.data.reduce((acc, moodEntry) => {
           acc[moodEntry.date] = moodEntry.mood;
           return acc;
         }, {});
         setMoods(moodsMap);
+
       } catch (error) {
         console.error("Failed to fetch dashboard data", error);
       } finally {
-        setLoading(false); // Used here
+        setLoading(false);
       }
     };
     fetchData();
-  }, [user]);
+  }, [user, API_URL]); // Add API_URL to dependency array
 
+  // This function is needed for the slider
   const handleMoodChange = async (newMoodIndex) => {
     setMoodValue(newMoodIndex);
     const newMoodEmoji = moodOptions[newMoodIndex];
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       const moodData = { date: today, mood: newMoodEmoji };
-      await axios.post('/api/moods', moodData, config);
+      await axios.post(`${API_URL}/api/moods`, moodData, config);
       setMoods(prevMoods => ({ ...prevMoods, [today]: newMoodEmoji }));
     } catch (error) {
       console.error("Failed to save mood", error);
@@ -66,10 +71,19 @@ const DashboardPage = () => {
     navigate('/');
   };
 
+  // This robust check prevents errors if user data is still loading
+  if (!user) {
+    return (
+      <div style={{ color: 'var(--text-color-primary)', textAlign: 'center', paddingTop: '10rem' }}>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1>Welcome, {user?.name}!</h1>
+        <h1>Welcome, {user.name}!</h1>
         <button onClick={handleLogout} className="logout-button">Logout</button>
       </div>
 
@@ -92,7 +106,6 @@ const DashboardPage = () => {
       <div className="dashboard-grid">
         <div className="dashboard-card calendar-card">
           <h2>Mood Calendar</h2>
-          {/* THE 'moods' VARIABLE IS NOW USED HERE */}
           <Calendar
             tileContent={({ date, view }) => {
               if (view === 'month') {
@@ -103,20 +116,16 @@ const DashboardPage = () => {
             }}
           />
         </div>
-
         <div className="dashboard-card history-card">
           <h2>Assessment History</h2>
-          {/* THE 'loading' AND 'assessments' VARIABLES ARE NOW USED HERE */}
-          {loading ? (
-            <p>Loading your history...</p>
-          ) : assessments.length > 0 ? (
+          {loading ? ( <p>Loading...</p> ) : assessments.length > 0 ? (
             <ul className="history-list">
-              {assessments.map((assessment) => (
+              {assessments.slice(0, 3).map((assessment) => (
                 <li key={assessment._id} className="history-item">
                   <div className="history-item-info">
-                    <span className="history-item-quiz-type">{assessment.quizType} Assessment</span>
+                    <span className="history-item-quiz-type">{assessment.quizType}</span>
                     <span className="history-item-date">
-                      Taken on {new Date(assessment.createdAt).toLocaleDateString()}
+                      {new Date(assessment.createdAt).toLocaleDateDateString()}
                     </span>
                   </div>
                   <span className="history-item-score">{assessment.resultCategory}</span>
@@ -124,9 +133,9 @@ const DashboardPage = () => {
               ))}
             </ul>
           ) : (
-            <p>You have no past assessments. Start one today to track your progress!</p>
+            <p>No past assessments.</p>
           )}
-           <Link to="/assessment" className="cta-button" style={{width: '100%', boxSizing: 'border-box', marginTop: '1.5rem', textAlign: 'center'}}>
+           <Link to="/assessment" className="cta-button" style={{width: '100%', boxSizing: 'border-box', marginTop: '1rem', textAlign: 'center'}}>
             Start New Assessment
           </Link>
         </div>
