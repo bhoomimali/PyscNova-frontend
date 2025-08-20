@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# PsyNova ✨
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Understand Your Mind. Find Your Path.**
 
-## Available Scripts
+PsyNova is a serene, confidential, and interactive web application designed to be a gentle entry point for anyone's mental wellness journey. It provides users with evidence-based self-assessments and personalized support guidance in a calming, non-judgmental environment.
 
-In the project directory, you can run:
+**LIVE DEMO 🚀: https://pysc-nova-frontend.vercel.app/
 
-### `npm start`
+## 📸 Screenshots
+landing page:
+<img width="1891" height="898" alt="image" src="https://github.com/user-attachments/assets/090bc52f-c208-4064-ab56-ef80807f1208" />
+Dashboard:
+<img width="1903" height="906" alt="image" src="https://github.com/user-attachments/assets/898a4558-e9a0-462d-b1a1-5aca626c73e9" />
+Assessment test:
+<img width="1892" height="888" alt="image" src="https://github.com/user-attachments/assets/c15bc9fd-d405-44a7-93a2-ebe3cd639416" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+PsyNova is packed with features designed to create a supportive and engaging user experience:
 
-### `npm test`
+*   **Secure User Authentication:** Full registration and login flow with secure password encryption on the backend.
+*   **Dynamic, Mood-Based UI:** An immersive "Aurora" background that subtly changes its colors to reflect the user's selected daily mood.
+*   **Daily Mood Tracking & Calendar:** An interactive calendar on the dashboard for users to log their daily emotional state and visualize patterns over time.
+*   **Evidence-Based Assessments:** A clean and simple interface for taking clinically validated questionnaires like the GAD-7 for anxiety.
+*   **Personalized Support Guidance:** After an assessment, the system fetches and displays a curated list of relevant articles, tools, and resources.
+*   **Light/Dark Mode Toggle:** A beautiful theme switcher for a personalized viewing experience.
+*   **Fully Responsive Design:** A seamless experience across desktop and mobile devices.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The frontend is a modern, fast, and responsive single-page application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*   **Framework:** **React.js**
+*   **Animations:** **Framer Motion** for fluid, performant UI animations.
+*   **Routing:** **React Router** for seamless client-side navigation.
+*   **State Management:** **React Context API** for managing user authentication and theme state globally.
+*   **HTTP Client:** **Axios** for communicating with the backend API.
+*   **Deployment:** Hosted on **Vercel** with a CI/CD pipeline.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ### Prerequisites
 
-### `npm run eject`
+*   Node.js (v18 or later)
+*   npm
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.  Clone the repo
+    ```sh
+    git clone https://github.com/your-username/psynova-frontend.git
+    ```
+2.  Navigate to the project directory
+    ```sh
+    cd psynova-frontend
+    ```
+3.  Install NPM packages
+    ```sh
+    npm install
+    ```
+4.  Create a `.env` file in the root and add your backend API URL:
+    ```
+    REACT_APP_API_URL=http://localhost:5000
+    ```
+5.  Start the development server
+    ```sh
+    npm start
+    ```
+    The application will be available at `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
